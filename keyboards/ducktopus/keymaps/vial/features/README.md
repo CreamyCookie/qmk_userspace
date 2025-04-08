@@ -1,5 +1,7 @@
 # Heuristic Tap Hold
-*Tap into Efficiency: Fast Home Row Mods with Heuristic Hold*
+*Smarter Key Press Decisions Powered by Genetic Algorithms*
+
+---
 
 This features completely overwrites the way tap hold keys work.
 
