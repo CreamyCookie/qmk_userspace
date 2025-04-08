@@ -1,0 +1,36 @@
+# hardware related stuff
+MCU = RP2040
+SPLIT_KEYBOARD = yes
+BOOTLOADER = rp2040
+SERIAL_DRIVER = vendor
+WS2812_DRIVER = vendor
+
+POINTING_DEVICE_ENABLE = yes
+POINTING_DEVICE_DRIVER = pmw3360
+MOUSE_SHARED_EP = yes
+#OPT_DEFS += -DHAL_USE_I2C=TRUE
+
+## don't have
+RGBLIGHT_ENABLE = no
+SLEEP_LED_ENABLE = no
+OLED_ENABLE = no
+
+# debug
+CONSOLE_ENABLE = no
+
+# features we want
+MOUSEKEY_ENABLE = yes
+BOOTMAGIC_ENABLE = yes
+NKRO_ENABLE = yes           # N-Key Rollover
+EXTRAKEY_ENABLE = yes       # Audio control and System control
+ENCODER_ENABLE = yes
+ENCODER_MAP_ENABLE = yes
+CAPS_WORD_ENABLE = yes
+
+# save space
+WPM_ENABLE = no
+SPACE_CADET_ENABLE = no
+GRAVE_ESC_ENABLE = no
+MAGIC_ENABLE = no
+COMMAND_ENABLE = no
+LTO_ENABLE = yes
