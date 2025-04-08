@@ -61,6 +61,7 @@ If, on the other end, it could also be a `LSFT`, then the possible predictions a
 1. `KC_LCTL` + `KC_LSFT` + `KC_A`
 2. `KC_LCTL` + `KC_T` + `KC_A`
 3. `KC_E` + `KC_T` + `KC_A`
+4. `KC_E` + `KC_LSFT` + `KC_A`
 
 Of course that means there is a lower probability that we make the correct prediction. `P(correct) = 0.9 * 0.9 * 1 = 0.81`
 
