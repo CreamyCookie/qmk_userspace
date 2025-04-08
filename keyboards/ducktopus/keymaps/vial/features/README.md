@@ -46,7 +46,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
 
 ## Limitation
 ### 1. Multiple tap hold keys
-At the moment, multiple tap hold keys can't be held together. So `LCTL_T(KC_E)` + `LSFT_T(KC_T)` would just result in `ET`. I admit this is a major limitation and there are situations where I also miss it.
+At the moment, multiple tap hold keys can't be held together. So `LCTL_T(KC_E)` + `LSFT_T(KC_T)` can only ever be `CTRL + T` or `ET`. I admit this is a major limitation and there are situations where I also miss it.
 
 That said, it does seem more ergonomic to use one key for pressing multiple modifiers (`CTRL` + `SHIFT` + `F` with only two keys). That is what is used in my [keymap.c](../keymap.c).
 
