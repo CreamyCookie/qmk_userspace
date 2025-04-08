@@ -13,6 +13,22 @@ Note that the key events in the hold case (`LCTL_T(KC_E)` becomes `CTRL`) are se
 
 For more information, see the [evolve_heuristic_tap_hold](https://github.com/CreamyCookie/evolve_heuristic_tap_hold) repository.
 
+## Performance
+
+**overlap function**
+* mod: 909842 / 1319001
+* non-mod: 8947374 / 8980574
+* ~Correct:    95.705 % (of 10,299,573)
+
+**wrap function**
+* mod: 320852 / 343898
+* non-mod: 109651 / 131951
+* ~Correct:    90.470 % (of 475,847)
+
+**triple down function**
+* mod: 16938 / 28959
+* non-mod: 251280 / 251715
+* ~Correct:    95.562 % (of 280,672)
 
 ## How to use
 **0.** Copy `heuristic_tap_hold.c` and `heuristic_tap_hold.h` to a folder `features` (in the same folder as your `keymap.c`)
