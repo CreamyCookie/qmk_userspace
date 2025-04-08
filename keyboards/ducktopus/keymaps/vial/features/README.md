@@ -3,7 +3,7 @@
 
 ---
 
-The goal is to make tap hold behave more intuitively.
+The goal is to make tap hold behave more intuitively by using functions that were created using real typing data.
 
 This features completely overwrites the way tap hold keys work.
 
