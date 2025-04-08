@@ -3,13 +3,13 @@
 
 ---
 
+The goal is to make tap hold behave more intuitively.
+
 This features completely overwrites the way tap hold keys work.
 
 When the user presses `LCTL_T(KC_E)` and then `KC_V`, the decision to send `CTRL + V` or `EV` is made based on the duration that both keys are held down simultaneously. If the overlap is larger than a certain duration, it is a hold, and so `CTRL + V` will be sent. If they don't, it is considered a tap, and so `EV` will be sent.
 
-However, the overlap duration is not a static duration like with the `TAPPING_TERM`. Instead, the duration is estimated using a heuristic when the `V` is pressed. It uses information like the duration between the two presses, as well as the press before. There are also two functions that directly make a choice. They are used when a key is wrapped or three keys are down. These functions were found using a genetic algorithm (specifically genetic programming and symbolic regression).
-
-Note that the key events in the hold case (`LCTL_T(KC_E)` becomes `CTRL`) are sent immediately once the actual overlap is greater than the predicted one. As a result, these key events may be sent much faster than using the traditional tap hold system. 
+However, the overlap duration is not a static duration like with the `TAPPING_TERM`. Instead, the duration is estimated using a heuristic once `V` is pressed. It uses information like the duration between the two presses, as well as the press before. There are also two functions that directly make a choice. They are used when a key is wrapped or when three keys are down. These functions were found using a genetic algorithm (specifically genetic programming and symbolic regression).
 
 For more information, see the [evolve_heuristic_tap_hold](https://github.com/CreamyCookie/evolve_heuristic_tap_hold) repository.
 
@@ -30,7 +30,7 @@ For more information, see the [evolve_heuristic_tap_hold](https://github.com/Cre
 * non-mod: 251280 / 251715
 * ~Correct:    95.562 % (of 280,672)
 
-## How to use
+## Usage
 **0.** Copy `heuristic_tap_hold.c` and `heuristic_tap_hold.h` to a folder `features` (in the same folder as your `keymap.c`)
 
 **1.** Add `SRC += features/heuristic_tap_hold.c` to your `rules.mk`
@@ -84,7 +84,14 @@ Of course that means there is a lower probability that we make the correct predi
 ### 2. Possibly more
 I have not tested how this works with features like combos. It does, however, work with the `CAPS_WORD` feature, and since we send events via `process_record` (and not `register_code16`), it should work with most macros.
 
+## Efficiency
+The key events are sent directly to the host once the actual overlap is greater than the predicted one. As a result, these key events may be sent much faster than using the traditional tap hold system.
+
+When one of the other two cases (wrapped or triple-down) is detected, key events will also be sent directly.
+
 ## History
-One thing that always bothered me about the tap hold functionality is the delay of normal typing. So, just to test whether it could be done, I started with a tap-first-ask-later approach. That is, the code would send the `tap` part of a tap hold key. Then, when the next key was pressed (not send to host yet) and when the code predicted a `hold`, it would do the following:
+One thing that bothered me in the past about the tap hold functionality is the delay of normal typing. So, just to test whether it could be done, I tried a tap-first-ask-later approach. That is, the code would send the `tap` part of a tap hold key. Then, when the next key was pressed (not send to host yet) and when the code predicted a `hold`, it would do the following:
 
 It would send `backspace`. Then it would send the hold part of the tap hold. And last but not least, it would actually send the next key event. Of course, that was completely unusable, as this completely destroys any undo functionality. Not to mention that what the tap part did, would not be undone by backspace in every application. 
+
+But it was still a fun challenge and I learned a lot.
